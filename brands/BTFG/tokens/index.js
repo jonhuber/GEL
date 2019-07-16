@@ -72,6 +72,49 @@ export default {
 		},
 	},
 
+	alert: {
+		borderWidth: '1px',
+
+		appearance: {
+			success: {
+				color: COLORS.success,
+				backgroundColor: Color('white')
+					.mix(Color(COLORS.success), 0.1)
+					.hex(),
+				borderColor: Color('white')
+					.mix(Color(COLORS.success), 0.5)
+					.hex(),
+			},
+			information: {
+				color: COLORS.information,
+				backgroundColor: Color('white')
+					.mix(Color(COLORS.information), 0.1)
+					.hex(),
+				borderColor: Color('white')
+					.mix(Color(COLORS.information), 0.5)
+					.hex(),
+			},
+			warning: {
+				color: COLORS.warning,
+				backgroundColor: Color('white')
+					.mix(Color(COLORS.warning), 0.1)
+					.hex(),
+				borderColor: Color('white')
+					.mix(Color(COLORS.warning), 0.5)
+					.hex(),
+			},
+			danger: {
+				color: COLORS.danger,
+				backgroundColor: Color('white')
+					.mix(Color(COLORS.danger), 0.1)
+					.hex(),
+				borderColor: Color('white')
+					.mix(Color(COLORS.danger), 0.5)
+					.hex(),
+			},
+		},
+	},
+
 	badge: {
 		minWidth: '10px',
 		minWidth: '10px',
