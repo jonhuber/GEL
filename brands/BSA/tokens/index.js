@@ -1,3 +1,5 @@
+import Color from 'color';
+
 const COLORS = {
 	background: '#F0F1F1',
 	border: '#D3D4D5',
@@ -16,7 +18,7 @@ const COLORS = {
 	danger: '#C40000',
 };
 
-const BREAK_POINTS = { xs: 576, sm: 768, md: 992, lg: 1200 };
+const BREAK_POINTS = { sm: 768, md: 992, lg: 1200 };
 
 export default {
 	breakpoints: BREAK_POINTS,
@@ -33,4 +35,47 @@ export default {
 	},
 	type: {},
 	spacing: {},
+
+	alert: {
+		borderWidth: '1px',
+
+		appearance: {
+			success: {
+				color: COLORS.success,
+				backgroundColor: Color('white')
+					.mix(Color(COLORS.success), 0.1)
+					.hex(),
+				borderColor: Color('white')
+					.mix(Color(COLORS.success), 0.5)
+					.hex(),
+			},
+			information: {
+				color: COLORS.information,
+				backgroundColor: Color('white')
+					.mix(Color(COLORS.information), 0.1)
+					.hex(),
+				borderColor: Color('white')
+					.mix(Color(COLORS.information), 0.5)
+					.hex(),
+			},
+			warning: {
+				color: COLORS.warning,
+				backgroundColor: Color('white')
+					.mix(Color(COLORS.warning), 0.1)
+					.hex(),
+				borderColor: Color('white')
+					.mix(Color(COLORS.warning), 0.5)
+					.hex(),
+			},
+			danger: {
+				color: COLORS.danger,
+				backgroundColor: Color('white')
+					.mix(Color(COLORS.danger), 0.1)
+					.hex(),
+				borderColor: Color('white')
+					.mix(Color(COLORS.danger), 0.5)
+					.hex(),
+			},
+		},
+	},
 };
