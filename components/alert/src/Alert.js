@@ -22,14 +22,15 @@ export const Alert = ({ appearance, icon: Icon, closable, children }) => {
 	const { breakpoints, alert } = useTheme();
 	const mq = paint(breakpoints);
 
+	const getPaddingSM = () => closable ? `${alert.padding} 30px ${alert.padding} ${alert.padding}` : alert.padding;
+
 	// Common styling
 	const styleCommon = {
-		display: 'flex',
-		alignItems: 'center',
+		display: [null, 'flex'],
 		position: 'relative',
-		marginBottom: '21px',
+		marginBottom: alert.marginBottom,
 		zIndex: '1',
-		padding: '18px 34px 18px 18px',
+		padding: [alert.padding, getPaddingSM()],
 
 		a: {
 			color: 'inherit',
@@ -101,6 +102,31 @@ export const Alert = ({ appearance, icon: Icon, closable, children }) => {
 		};
 	};*/
 
+	const styleClose = {
+		position: ['relative', 'absolute'],
+		color: 'inherit',
+		zIndex: 1,
+		top: '3px',
+		right: 0,
+		float: ['right', 'none'],
+		marginTop: ['-18px', 0], //pull
+		marginRight: ['-18px', 0], //pull
+
+		':hover': {
+			opacity: 0.5,
+		}
+	};
+	const styleIcon = {
+		float: ['left', 'none'],
+		flex: ['none'],
+		marginRight: ['6px', '12px'], //gap
+	};
+	const styleBody = {
+		position: 'relative',
+		flex: 1,
+		top: Icon ? '2px' : null, //tweak
+	};
+
 	return (
 		<>
 			{open && (
@@ -111,16 +137,18 @@ export const Alert = ({ appearance, icon: Icon, closable, children }) => {
 					onExited={() => setOpen(false)}
 				>
 					<div css={mq({ ...styleCommon, ...styleAppearance })}>
-						{Icon && <Icon />}
-						<div className="alert-body">{children}</div>
 						{closable && (
 							<Button
+								appearance="link"
 								icon={CloseIcon}
 								onClick={() => {
 									setAnim(false);
 								}}
+								css={mq({ ...styleClose })}
 							/>
 						)}
+						{Icon && <Icon css={mq({ ...styleIcon })} />}
+						<div css={mq({ ...styleBody })}>{children}</div>
 					</div>
 				</CSSTransition>
 			)}
@@ -132,5 +160,5 @@ export const Alert = ({ appearance, icon: Icon, closable, children }) => {
 // Types
 // ==============================
 Alert.defaultProps = {
-	closable: true,
+	closable: false,
 };
