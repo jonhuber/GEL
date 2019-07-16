@@ -1,7 +1,8 @@
 /* @jsx jsx */
 
 import React, { useState } from 'react';
-import { css, jsx, useTheme, paint } from '@westpac/core';
+import PropTypes from 'prop-types';
+import { jsx, useTheme, paint } from '@westpac/core';
 
 import { Button } from '../../button/src'; //until button package is published
 import { CloseIcon } from '../../icon/src'; //until icon package is published
@@ -29,11 +30,16 @@ export const Alert = ({ appearance, icon: Icon, closable, children }) => {
 		display: [null, 'flex'],
 		position: 'relative',
 		marginBottom: alert.marginBottom,
-		zIndex: '1',
+		zIndex: 1,
 		padding: [alert.padding, getPaddingSM()],
+		opacity: 1,
+		transition: 'opacity 0.3s ease-in-out',
 
-		a: {
+		'a, h1, h2, h3, h4, h5, h6, ol, ul': {
 			color: 'inherit',
+		},
+		'&.anim-exit-active': {
+			opacity: 0,
 		},
 	};
 
@@ -45,62 +51,7 @@ export const Alert = ({ appearance, icon: Icon, closable, children }) => {
 		borderTop: `${alert.borderWidth} solid`,
 		borderBottom: `${alert.borderWidth} solid`,
 		borderColor: appearance === 'system' ? 'yellow' : alert.appearance[appearance].borderColor,
-
-		// display: 'flex',
-		// alignItems: 'center',
-
-		/*'& > .icon': {
-			marginRight: '6px',
-			marginTop: '1px',
-			float: 'left',
-		},
-
-		'& > .icon-alert': {
-			marginRight: '4px',
-		},*/
-
-		/*a: {
-			color: 'inherit',
-		},*/
 	};
-
-	/*const styleBox = appearance => {
-		const { colors, alert } = useTheme();
-
-		return {
-			display: 'block',
-			position: 'relative',
-			marginBottom: '21px',
-			zIndex: '1',
-			padding: '18px 34px 18px 18px',
-
-			opacity: '1',
-			transition: 'opacity 0.3s ease-in-out',
-
-			button: {
-				color: colors[appearance],
-				background: 'none',
-				border: 'none',
-				position: 'absolute',
-				right: '0',
-				top: '15px',
-				padding: '5px 12px',
-
-				'&:hover': {
-					cursor: 'pointer',
-					opacity: '0.5',
-				},
-			},
-			'.alert-box': {
-				position: 'relative',
-				flex: 1,
-			},
-
-			'&.anim-exit-active': {
-				opacity: 0,
-			},
-		};
-	};*/
 
 	const styleClose = {
 		position: ['relative', 'absolute'],
@@ -159,6 +110,38 @@ export const Alert = ({ appearance, icon: Icon, closable, children }) => {
 // ==============================
 // Types
 // ==============================
+
+const options = {
+	appearance: ['success', 'information', 'warning', 'danger', 'system'],
+};
+
+Alert.propTypes = {
+	/**
+	 * The button appearance.
+	 *
+	 * Defaults to "primary"
+	 */
+	appearance: PropTypes.oneOf(options.appearance),
+
+	/**
+	 * Close button option.
+	 *
+	 * Defaults to "false"
+	 */
+	closable: PropTypes.bool,
+
+	/**
+	 * Alert icon.
+	 */
+	icon: PropTypes.func,
+
+	/**
+	 * The content for this button.
+	 */
+	children: PropTypes.node,
+};
+
 Alert.defaultProps = {
+	appearance: 'information',
 	closable: false,
 };
