@@ -74,6 +74,8 @@ export default {
 
 	alert: {
 		borderWidth: '1px',
+		padding: '18px',
+		marginBottom: '21px',
 
 		appearance: {
 			success: {
