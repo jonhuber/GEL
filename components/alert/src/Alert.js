@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { css, jsx, useTheme, paint } from '@westpac/core';
 
+import { Button } from '../../button/src'; //until button package is published
 import { CloseIcon } from '../../icon/src'; //until icon package is published
 import { CSSTransition } from 'react-transition-group';
 
@@ -25,16 +26,21 @@ export const Alert = ({ appearance, icon: Icon, closable, children }) => {
 	const styleCommon = {
 		display: 'flex',
 		alignItems: 'center',
+		position: 'relative',
+		marginBottom: '21px',
+		zIndex: '1',
+		padding: '18px 34px 18px 18px',
 
 		a: {
 			color: 'inherit',
-		}
+		},
 	};
 
 	// Alert appearance styling
 	const styleAppearance = {
 		color: appearance === 'system' ? 'black' : alert.appearance[appearance].color,
-		backgroundColor: appearance === 'system' ? 'yellow' : alert.appearance[appearance].backgroundColor,
+		backgroundColor:
+			appearance === 'system' ? 'yellow' : alert.appearance[appearance].backgroundColor,
 		borderTop: `${alert.borderWidth} solid`,
 		borderBottom: `${alert.borderWidth} solid`,
 		borderColor: appearance === 'system' ? 'yellow' : alert.appearance[appearance].borderColor,
@@ -56,7 +62,6 @@ export const Alert = ({ appearance, icon: Icon, closable, children }) => {
 			color: 'inherit',
 		},*/
 	};
-
 
 	/*const styleBox = appearance => {
 		const { colors, alert } = useTheme();
@@ -96,7 +101,6 @@ export const Alert = ({ appearance, icon: Icon, closable, children }) => {
 		};
 	};*/
 
-
 	return (
 		<>
 			{open && (
@@ -107,11 +111,16 @@ export const Alert = ({ appearance, icon: Icon, closable, children }) => {
 					onExited={() => setOpen(false)}
 				>
 					<div css={mq({ ...styleCommon, ...styleAppearance })}>
-						{Icon && <Icon size={['small', 'medium']} />}
-						<div className="alert-body">
-							{children}
-						</div>
-						{closable && <Button icon={CloseIcon} onClick={() => { setAnim(false); }} />}
+						{Icon && <Icon />}
+						<div className="alert-body">{children}</div>
+						{closable && (
+							<Button
+								icon={CloseIcon}
+								onClick={() => {
+									setAnim(false);
+								}}
+							/>
+						)}
 					</div>
 				</CSSTransition>
 			)}
@@ -123,5 +132,5 @@ export const Alert = ({ appearance, icon: Icon, closable, children }) => {
 // Types
 // ==============================
 Alert.defaultProps = {
-	closable: false,
+	closable: true,
 };
