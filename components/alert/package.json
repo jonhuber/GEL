@@ -1,7 +1,7 @@
 {
 	"name": "@westpac/alert",
 	"version": "0.0.1",
-	"description": "Grid component for the Westpac GEL",
+	"description": "Alert component for the Westpac GEL",
 	"repository": "https://github.com/WestpacGEL/GEL.git",
 	"author": "Westpac GEL Team <gel@westpac.com.au>",
 	"contributors": [
@@ -11,9 +11,14 @@
 			"url": "https://dominik-wilkowski.com"
 		},
 		{
-			"name": "Joss Mackison",
-			"email": "joss@thinkmill.com.au",
-			"url": "http://jossmackison.me"
+			"name": "Flore Laforge",
+			"email": "flore.laforge@westpac.com.au",
+			"url": "https://linkedin.com/in/flore-laforge"
+		},
+		{
+			"name": "Jonathan Stening",
+			"email": "info@jonathanstening.com",
+			"url": "http://jonathanstening.com"
 		}
 	],
 	"license": "GPL-3.0+",
@@ -29,6 +34,8 @@
 	"main": "dist/index.js",
 	"dependencies": {
 		"@westpac/core": "^0.0.1",
+		"@westpac/button": "^0.0.1",
+		"@westpac/icon": "^0.0.1",
 		"prop-types": "^15.6.2"
 	},
 	"peerDependencies": {

@@ -13,8 +13,8 @@ export default () => (
 			quis, molestias nisi quae voluptates nemo quaerat nihil, consequuntur nobis ratione rerum
 			asperiores eveniet dicta maiores quia nostrum. Pariatur, natus. Lorem ipsum dolor sit amet,
 			consectetur adipisicing elit. Fuga, magnam illum harum consequatur, quo sunt impedit quam
-			minus eaque saepe voluptas corrupti voluptatum, sapiente dolor sequi tempore maxime? Neque,
-			obcaecati. <a href="#">Link</a>
+			minus eaque saepe voluptas corrupti voluptatum, sapiente dolor sequi tempore maxime?
+			Neque,obcaecati. <a href="#">Link</a>
 		</Alert>
 		<Alert appearance="information" icon={InfoIcon} closable>
 			<strong>Heads up!</strong> This alert needs your attention, but it’s not super important.{' '}

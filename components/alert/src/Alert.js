@@ -23,7 +23,8 @@ export const Alert = ({ appearance, icon: Icon, closable, children }) => {
 	const { breakpoints, alert } = useTheme();
 	const mq = paint(breakpoints);
 
-	const getPaddingSM = () => closable ? `${alert.padding} 30px ${alert.padding} ${alert.padding}` : alert.padding;
+	const getPaddingSM = () =>
+		closable ? `${alert.padding} 30px ${alert.padding} ${alert.padding}` : alert.padding;
 
 	// Common styling
 	const styleCommon = {
@@ -65,7 +66,7 @@ export const Alert = ({ appearance, icon: Icon, closable, children }) => {
 
 		':hover': {
 			opacity: 0.5,
-		}
+		},
 	};
 	const styleIcon = {
 		float: ['left', 'none'],
