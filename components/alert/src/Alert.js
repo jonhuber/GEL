@@ -46,12 +46,12 @@ export const Alert = ({ appearance, icon: Icon, closable, children }) => {
 
 	// Alert appearance styling
 	const styleAppearance = {
-		color: appearance === 'system' ? 'black' : alert.appearance[appearance].color,
+		color: alert.appearance[appearance].color,
 		backgroundColor:
-			appearance === 'system' ? 'yellow' : alert.appearance[appearance].backgroundColor,
+			alert.appearance[appearance].backgroundColor,
 		borderTop: `${alert.borderWidth} solid`,
 		borderBottom: `${alert.borderWidth} solid`,
-		borderColor: appearance === 'system' ? 'yellow' : alert.appearance[appearance].borderColor,
+		borderColor: alert.appearance[appearance].borderColor,
 	};
 
 	const styleClose = {
@@ -76,7 +76,7 @@ export const Alert = ({ appearance, icon: Icon, closable, children }) => {
 	const styleBody = {
 		position: 'relative',
 		flex: 1,
-		top: Icon ? '2px' : null, //tweak
+		top: [null, Icon ? '2px' : null], //tweak
 	};
 
 	return (
@@ -118,14 +118,14 @@ const options = {
 
 Alert.propTypes = {
 	/**
-	 * The button appearance.
+	 * The alert appearance.
 	 *
-	 * Defaults to "primary"
+	 * Defaults to "information"
 	 */
 	appearance: PropTypes.oneOf(options.appearance),
 
 	/**
-	 * Close button option.
+	 * Close alert option.
 	 *
 	 * Defaults to "false"
 	 */
@@ -137,7 +137,7 @@ Alert.propTypes = {
 	icon: PropTypes.func,
 
 	/**
-	 * The content for this button.
+	 * The content for this alert.
 	 */
 	children: PropTypes.node,
 };
