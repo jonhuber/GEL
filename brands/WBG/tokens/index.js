@@ -66,13 +66,6 @@ export default {
 	type: {},
 	spacing: {},
 
-	grid: {
-		container: {
-			maxWidth: CONTAINER_MAXWIDTH,
-			padding: CONTAINER_PADDING,
-		},
-	},
-
 	alert: {
 		borderWidth: '1px',
 		padding: '18px',
@@ -290,7 +283,6 @@ export default {
 				soft: {},
 			},
 		},
-
 		size: {
 			small: {
 				padding: ['3px', '9px', '4px'],
@@ -312,6 +304,13 @@ export default {
 				fontSize: '18px',
 				height: '48px',
 			},
+		},
+	},
+
+	grid: {
+		container: {
+			maxWidth: CONTAINER_MAXWIDTH,
+			padding: CONTAINER_PADDING,
 		},
 	},
 
