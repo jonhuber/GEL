@@ -74,22 +74,22 @@ export default {
 		appearance: {
 			success: {
 				color: COLORS.success,
-				backgroundColor: 	tint(COLORS.success, 0.1),
+				backgroundColor: tint(COLORS.success, 0.1),
 				borderColor: 	tint(COLORS.success, 0.5),
 			},
 			information: {
 				color: COLORS.information,
-				backgroundColor: 	tint(COLORS.information, 0.1),
+				backgroundColor: tint(COLORS.information, 0.1),
 				borderColor: 	tint(COLORS.information, 0.5),
 			},
 			warning: {
 				color: COLORS.warning,
-				backgroundColor: 	tint(COLORS.warning, 0.1),
+				backgroundColor: tint(COLORS.warning, 0.1),
 				borderColor: 	tint(COLORS.warning, 0.5),
 			},
 			danger: {
 				color: COLORS.danger,
-				backgroundColor: 	tint(COLORS.danger, 0.1),
+				backgroundColor: tint(COLORS.danger, 0.1),
 				borderColor: 	tint(COLORS.danger, 0.5),
 			},
 			system: {
@@ -127,12 +127,12 @@ export default {
 					},
 					hover: {
 						color: null,
-						backgroundColor: 	tint(COLORS.primary, 0.7),
+						backgroundColor: tint(COLORS.primary, 0.7),
 						borderColor: null,
 					},
 					active: {
 						color: '#fff',
-						backgroundColor: 	tint(COLORS.primary, 0.5),
+						backgroundColor: tint(COLORS.primary, 0.5),
 						borderColor: null,
 					},
 				},
@@ -144,12 +144,12 @@ export default {
 					},
 					hover: {
 						color: '#fff',
-						backgroundColor: 	tint(COLORS.primary, 0.7),
+						backgroundColor: tint(COLORS.primary, 0.7),
 						borderColor: null,
 					},
 					active: {
 						color: '#fff',
-						backgroundColor: 	tint(COLORS.primary, 0.5),
+						backgroundColor: tint(COLORS.primary, 0.5),
 						borderColor: null,
 					},
 				},
@@ -163,12 +163,12 @@ export default {
 					},
 					hover: {
 						color: COLORS.text, //mapping unique to this brand
-						backgroundColor: 	tint(COLORS.hero, 0.7),
+						backgroundColor: tint(COLORS.hero, 0.7),
 						borderColor: null,
 					},
 					active: {
 						color: COLORS.text, //mapping unique to this brand
-						backgroundColor: 	tint(COLORS.hero, 0.5),
+						backgroundColor: tint(COLORS.hero, 0.5),
 						borderColor: null,
 					},
 				},
@@ -180,12 +180,12 @@ export default {
 					},
 					hover: {
 						color: null, //mapping unique to this brand
-						backgroundColor: 	tint(COLORS.hero, 0.7),
+						backgroundColor: tint(COLORS.hero, 0.7),
 						borderColor: null,
 					},
 					active: {
 						color: null, //mapping unique to this brand
-						backgroundColor: 	tint(COLORS.hero, 0.5),
+						backgroundColor: tint(COLORS.hero, 0.5),
 						borderColor: null,
 					},
 				},
@@ -199,12 +199,12 @@ export default {
 					},
 					hover: {
 						color: null,
-						backgroundColor: 	tint(COLORS.neutral, 0.7),
+						backgroundColor: tint(COLORS.neutral, 0.7),
 						borderColor: null,
 					},
 					active: {
 						color: '#fff',
-						backgroundColor: 	tint(COLORS.neutral, 0.5),
+						backgroundColor: tint(COLORS.neutral, 0.5),
 						borderColor: null,
 					},
 				},
@@ -216,12 +216,12 @@ export default {
 					},
 					hover: {
 						color: '#fff',
-						backgroundColor: 	tint(COLORS.neutral, 0.7),
+						backgroundColor: tint(COLORS.neutral, 0.7),
 						borderColor: null,
 					},
 					active: {
 						color: '#fff',
-						backgroundColor: 	tint(COLORS.neutral, 0.5),
+						backgroundColor: tint(COLORS.neutral, 0.5),
 						borderColor: null,
 					},
 				},
@@ -331,8 +331,8 @@ export default {
 				},
 				hover: {
 					color: null,
-					backgroundColor: 	tint(COLORS.primary, 0.5),
-					borderColor: 	tint(COLORS.primary, 0.5),
+					backgroundColor: tint(COLORS.primary, 0.5),
+					borderColor: tint(COLORS.primary, 0.5),
 				},
 			},
 			hero: {
@@ -343,8 +343,8 @@ export default {
 				},
 				hover: {
 					color: null,
-					backgroundColor: 	tint(COLORS.hero, 0.5),
-					borderColor: 	tint(COLORS.hero, 0.5),
+					backgroundColor: tint(COLORS.hero, 0.5),
+					borderColor: tint(COLORS.hero, 0.5),
 				},
 			},
 			neutral: {
@@ -355,8 +355,8 @@ export default {
 				},
 				hover: {
 					color: null,
-					backgroundColor: 	tint(COLORS.neutral, 0.5),
-					borderColor: 	tint(COLORS.neutral, 0.5),
+					backgroundColor: tint(COLORS.neutral, 0.5),
+					borderColor: tint(COLORS.neutral, 0.5),
 				},
 			},
 			faint: {
@@ -379,8 +379,8 @@ export default {
 				},
 				hover: {
 					color: null,
-					backgroundColor: 	tint(COLORS.success, 0.5),
-					borderColor: 	tint(COLORS.success, 0.5),
+					backgroundColor: tint(COLORS.success, 0.5),
+					borderColor: tint(COLORS.success, 0.5),
 				},
 			},
 			information: {
@@ -391,8 +391,8 @@ export default {
 				},
 				hover: {
 					color: null,
-					backgroundColor: 	tint(COLORS.information, 0.5),
-					borderColor: 	tint(COLORS.information, 0.5),
+					backgroundColor: tint(COLORS.information, 0.5),
+					borderColor: tint(COLORS.information, 0.5),
 				},
 			},
 			warning: {
@@ -403,8 +403,8 @@ export default {
 				},
 				hover: {
 					color: null,
-					backgroundColor: 	tint(COLORS.warning, 0.5),
-					borderColor: 	tint(COLORS.warning, 0.5),
+					backgroundColor: tint(COLORS.warning, 0.5),
+					borderColor: tint(COLORS.warning, 0.5),
 				},
 			},
 			danger: {
@@ -415,8 +415,8 @@ export default {
 				},
 				hover: {
 					color: null,
-					backgroundColor: 	tint(COLORS.danger, 0.5),
-					borderColor: 	tint(COLORS.danger, 0.5),
+					backgroundColor: tint(COLORS.danger, 0.5),
+					borderColor: tint(COLORS.danger, 0.5),
 				},
 			},
 		},
