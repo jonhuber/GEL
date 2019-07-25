@@ -96,11 +96,11 @@ export const Alert = ({ appearance, icon: Icon, closable, children }) => {
 								onClick={() => {
 									setAnim(false);
 								}}
-								css={mq({ ...styleClose })}
+								css={mq(styleClose)}
 							/>
 						)}
-						{Icon && <Icon css={mq({ ...styleIcon })} />}
-						<div css={mq({ ...styleBody })}>{children}</div>
+						{Icon && <Icon css={mq(styleIcon)} />}
+						<div css={mq(styleBody)}>{children}</div>
 					</div>
 				</CSSTransition>
 			)}
