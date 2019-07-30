@@ -47,10 +47,11 @@ export const StyledModal = ({ size, ...props }) => {
 		borderRadius: modal.borderRadius,
 		boxShadow: '0 5px 15px rgba(0,0,0,0.5)',
 		transition: 'all 0.3s ease',
+
 		width: [
 			'auto',
-			...(size === 'small' ? [modal.width.small] : [modal.width.medium]),
-			...(size === 'large' ? [modal.width.large] : []),
+			...(size === 'small' ? [modal.size.small.width] : [modal.size.medium.width]),
+			...(size === 'large' ? [modal.size.large.width] : []),
 		],
 
 		'&.modal-appear': {

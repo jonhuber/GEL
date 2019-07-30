@@ -497,10 +497,16 @@ export default {
 	modal: {
 		backgroundColor: '#fff',
 		borderRadius: 3,
-		width: {
-			small: 300,
-			medium: 600,
-			large: 900,
+		size: {
+			small: {
+				width: 300,
+			},
+			medium: {
+				width: 600,
+			},
+			large: {
+				width: 900,
+			},
 		},
 		header: {
 			borderWidth: '1px',
