@@ -20,8 +20,10 @@ export default () => (
 			</ListItem>
 			<ListItem>Styled bullet list - primary</ListItem>
 		</List>
+
 		<hr />
-		<List color="hero">
+
+		<List appearance="hero">
 			{listGenerator('Styled bullet list - hero', 3)}
 			<ListItem>
 				Styled bullet list - hero
@@ -29,8 +31,10 @@ export default () => (
 			</ListItem>
 			<ListItem>Styled bullet list - hero</ListItem>
 		</List>
+
 		<hr />
-		<List color="neutral">
+
+		<List appearance="neutral">
 			{listGenerator('Styled bullet list - neutral', 3)}
 			<ListItem>
 				Styled bullet list - neutral
