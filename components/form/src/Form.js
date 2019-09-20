@@ -59,10 +59,6 @@ Form.propTypes = {
 	children: PropTypes.node,
 };
 
-export const defaultProps = {
-	size: 'medium',
-	spacing: 'medium',
-	isInline: false,
+Form.defaultProps = {
 	tag: 'form',
 };
-Form.defaultProps = defaultProps;

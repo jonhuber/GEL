@@ -1,10 +1,11 @@
 /** @jsx jsx */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx, useTheme } from '@westpac/core';
 import shortid from 'shortid';
 import { SwitchText, SwitchToggle } from './styled';
+import { FormContext } from '@westpac/form';
 
 // ==============================
 // Component
@@ -25,8 +26,10 @@ export const Switch = ({
 	...props
 }) => {
 	const { switch: formSwitch } = useTheme();
+	const formContext = useContext(FormContext);
 	const [checked, setChecked] = useState(isChecked);
 	const [switchId] = useState(`switch-${shortid.generate()}`);
+	const switchSize = formContext.size || size;
 
 	useEffect(
 		() => {
@@ -77,11 +80,16 @@ export const Switch = ({
 				onChange={toggle}
 			/>
 			{children && (
-				<SwitchText isBlock={isBlock} isFlipped={isFlipped} size={size} isSrOnlyText={isSrOnlyText}>
+				<SwitchText
+					isBlock={isBlock}
+					isFlipped={isFlipped}
+					size={switchSize}
+					isSrOnlyText={isSrOnlyText}
+				>
 					{children}
 				</SwitchText>
 			)}
-			<SwitchToggle toggleText={toggleText} size={size} />
+			<SwitchToggle toggleText={toggleText} size={switchSize} />
 		</label>
 	);
 };
@@ -113,7 +121,9 @@ Switch.propTypes = {
 	toggleText: PropTypes.arrayOf(PropTypes.string),
 
 	/**
-	 * Switch size
+	 * Switch size.
+	 *
+	 * This prop may be set via `FormContext`.
 	 */
 	size: PropTypes.oneOfType([
 		PropTypes.oneOf(options.size),

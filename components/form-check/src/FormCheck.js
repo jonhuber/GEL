@@ -1,18 +1,30 @@
 /** @jsx jsx */
 
-import React, { Children, cloneElement } from 'react';
+import React, { Children, cloneElement, isValidElement, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@westpac/core';
+import { FormCheckItem } from './FormCheckItem';
+import { FormContext } from '@westpac/form';
 
 // ==============================
 // Component
 // ==============================
 
 export const FormCheck = ({ type, name, size, isInline, isFlipped, children, ...props }) => {
+	const formContext = useContext(FormContext);
+
 	// Pass the selected props on to children
-	const childrenWithProps = Children.map(children, child =>
-		cloneElement(child, { type, name, size, isInline, isFlipped })
-	);
+	const childrenWithProps = Children.map(children, child => {
+		if (isValidElement(child) && child.type && child.type === FormCheckItem) {
+			return cloneElement(child, {
+				type,
+				name,
+				size: formContext.size || size,
+				isInline: formContext.isInline || isInline,
+				isFlipped,
+			});
+		}
+	});
 
 	return <div {...props}>{childrenWithProps}</div>;
 };
@@ -44,9 +56,16 @@ FormCheck.propTypes = {
 	/**
 	 * Form check size.
 	 *
-	 * This prop is passed to children.
+	 * This prop is passed to children and may be set via `FormContext`.
 	 */
 	size: PropTypes.oneOf(options.size),
+
+	/**
+	 * Enable inline mode.
+	 *
+	 * This prop is passed to children and may be set via `FormContext`.
+	 */
+	isInline: PropTypes.bool,
 
 	/**
 	 * Form check orientation (control on the right).
@@ -64,5 +83,6 @@ FormCheck.propTypes = {
 FormCheck.defaultProps = {
 	type: 'checkbox',
 	size: 'medium',
+	isInline: false,
 	isFlipped: false,
 };

@@ -3,7 +3,9 @@ import { FormCheck, FormCheckItem } from '../src';
 
 export default () => (
 	<>
-		<h2>Medium</h2>
+		<h2>Default</h2>
+
+		<h3>Medium</h3>
 		<FormCheck type="checkbox" name="example-checkbox-large-flip" size="medium" isFlipped>
 			<FormCheckItem value="1">Option 1</FormCheckItem>
 			<FormCheckItem value="r">
@@ -24,9 +26,7 @@ export default () => (
 			</FormCheckItem>
 		</FormCheck>
 
-		<hr />
-
-		<h2>Large</h2>
+		<h3>Large</h3>
 		<FormCheck type="checkbox" name="example-checkbox-large-flip" size="large" isFlipped>
 			<FormCheckItem value="1">Option 1</FormCheckItem>
 			<FormCheckItem value="2">
@@ -50,6 +50,7 @@ export default () => (
 		<hr />
 
 		<h2>Inline</h2>
+		<h3>Medium</h3>
 		<FormCheck
 			type="checkbox"
 			name="example-checkbox-medium-inline-flip"
@@ -66,7 +67,8 @@ export default () => (
 				aspernatur eveniet libero.
 			</FormCheckItem>
 		</FormCheck>
-		<br />
+
+		<h3>Large</h3>
 		<FormCheck
 			type="radio"
 			name="example-checkbox-large-inline-flip"
