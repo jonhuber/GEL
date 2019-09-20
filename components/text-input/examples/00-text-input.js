@@ -12,11 +12,19 @@ export default () => (
 		<TextInput />
 		<hr />
 		<h2>Size</h2>
+		<h3>Using prop passed to this component</h3>
 		{sizes.map((s, i, arr) => (
 			<Fragment key={i}>
 				<TextInput size={s} placeholder={s.replace(s[0], s[0].toUpperCase())} />
 				{i < arr.length - 1 && <br />}
 			</Fragment>
+		))}
+		<h3>Using prop passed to Form</h3>
+		{sizes.map((s, i, arr) => (
+			<Form size={s} key={i}>
+				<TextInput placeholder={s.replace(s[0], s[0].toUpperCase())} />
+				{i < arr.length - 1 && <br />}
+			</Form>
 		))}
 		<hr />
 		<h2>Invalid</h2>
@@ -31,6 +39,9 @@ export default () => (
 		<TextInput readOnly value="This value is readonly" />
 		<hr />
 		<h2>Inline</h2>
+		<h3>Using prop passed to this component</h3>
+		<TextInput isInline /> <TextInput isInline /> <Button type="submit">Submit</Button>
+		<h3>Using prop passed to Form</h3>
 		<Form isInline noValidate>
 			<TextInput /> <TextInput /> <Button type="submit">Submit</Button>
 		</Form>

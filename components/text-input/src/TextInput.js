@@ -17,18 +17,18 @@ const round = f => Math.round(f * 100) / 100; //2DP
 // Component
 // ==============================
 
-export const TextInput = ({ size, width, invalid, tag: Tag, children, ...props }) => {
+export const TextInput = ({ size, width, isInline, invalid, tag: Tag, children, ...props }) => {
 	const { colors, breakpoints, textInput, typography } = useTheme();
 	const formContext = useContext(FormContext);
 	const mq = paint(breakpoints);
 
-	const isInline = formContext.isInline;
+	const textInputIsInline = formContext.isInline || isInline;
 	const textInputSize = formContext.size || size;
 
 	// Common styling
 	const styleCommon = {
-		display: isInline ? ['block', 'inline-block'] : 'block',
-		width: isInline ? ['100%', 'auto'] : '100%',
+		display: textInputIsInline ? ['block', 'inline-block'] : 'block',
+		width: textInputIsInline ? ['100%', 'auto'] : '100%',
 		appearance: 'none',
 		lineHeight: textInput.lineHeight,
 		fontWeight: textInput.fontWeight,
@@ -41,7 +41,7 @@ export const TextInput = ({ size, width, invalid, tag: Tag, children, ...props }
 				: textInput.appearance.default.borderColor,
 		borderRadius: textInput.borderRadius,
 		transition: 'border 0.2s ease',
-		verticalAlign: isInline ? 'middle' : null,
+		verticalAlign: textInputIsInline ? 'middle' : null,
 		padding: textInput.size[textInputSize].padding.join(' '),
 		fontSize: textInput.size[textInputSize].fontSize,
 		height: `calc(${textInput.lineHeight}em + ${(p => `${p[0]} + ${p[2] || p[0]}`)(
@@ -101,7 +101,7 @@ export const TextInput = ({ size, width, invalid, tag: Tag, children, ...props }
 			},
 		},
 		textarea: {
-			verticalAlign: isInline && 'top',
+			verticalAlign: textInputIsInline && 'top',
 			...textInput.textarea.size[textInputSize],
 		},
 	};
@@ -151,7 +151,9 @@ const options = {
 
 TextInput.propTypes = {
 	/**
-	 * Component size
+	 * Component size.
+	 *
+	 * This prop may be set via `FormContext`.
 	 */
 	size: PropTypes.oneOf(options.size),
 
@@ -161,6 +163,13 @@ TextInput.propTypes = {
 	 * This prop sets a fixed width, measured in characters.
 	 */
 	width: PropTypes.oneOf(options.width),
+
+	/**
+	 * Enable inline mode.
+	 *
+	 * This prop may be set via `FormContext`.
+	 */
+	isInline: PropTypes.bool,
 
 	/**
 	 * Invalid input mode
@@ -182,6 +191,7 @@ TextInput.propTypes = {
 
 TextInput.defaultProps = {
 	size: 'medium',
+	isInline: false,
 	invalid: false,
 	tag: 'input',
 };

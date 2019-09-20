@@ -15,10 +15,9 @@ export default () => (
 				<option key={i}>{v}</option>
 			))}
 		</TextInput>
-
 		<hr />
-
 		<h2>Size</h2>
+		<h3>Using prop passed to this component</h3>
 		{sizes.map((s, i, arr) => (
 			<Fragment key={i}>
 				<TextInput tag="select" size={s}>
@@ -29,28 +28,46 @@ export default () => (
 				{i < arr.length - 1 && <br />}
 			</Fragment>
 		))}
-
+		<h3>Using prop passed to Form</h3>
+		{sizes.map((s, i, arr) => (
+			<Form size={s} key={i}>
+				<TextInput tag="select">
+					{options.map((v, i) => (
+						<option key={i}>{v}</option>
+					))}
+				</TextInput>
+				{i < arr.length - 1 && <br />}
+			</Form>
+		))}
 		<hr />
-
 		<h2>Invalid</h2>
 		<TextInput tag="select" invalid>
 			{options.map((v, i) => (
 				<option key={i}>{v}</option>
 			))}
 		</TextInput>
-
 		<hr />
-
 		<h2>Disabled</h2>
 		<TextInput tag="select" disabled>
 			{options.map((v, i) => (
 				<option key={i}>{v}</option>
 			))}
 		</TextInput>
-
 		<hr />
-
 		<h2>Inline</h2>
+		<h3>Using prop passed to this component</h3>
+		<TextInput tag="select" isInline>
+			{options.map((v, i) => (
+				<option key={i}>{v}</option>
+			))}
+		</TextInput>{' '}
+		<TextInput tag="select" isInline>
+			{options.map((v, i) => (
+				<option key={i}>{v}</option>
+			))}
+		</TextInput>{' '}
+		<Button type="submit">Submit</Button>
+		<h3>Using prop passed to Form</h3>
 		<Form isInline noValidate>
 			<TextInput tag="select">
 				{options.map((v, i) => (
@@ -64,9 +81,7 @@ export default () => (
 			</TextInput>{' '}
 			<Button type="submit">Submit</Button>
 		</Form>
-
 		<hr />
-
 		<h2>Fixed width</h2>
 		{widths.map((w, i, arr) => (
 			<Fragment key={i}>
