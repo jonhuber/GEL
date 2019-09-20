@@ -1,38 +1,40 @@
 import React from 'react';
-import { Button } from '../src';
+import { Button, ButtonWrap } from '../src';
 
 export default () => (
 	<>
-		<p>
+		<ButtonWrap>
 			<Button appearance="primary" disabled>
 				Primary
-			</Button>{' '}
+			</Button>
 			<Button appearance="hero" disabled>
 				Hero
-			</Button>{' '}
+			</Button>
 			<Button appearance="neutral" disabled>
 				Neutral
-			</Button>{' '}
+			</Button>
 			<Button appearance="faint" disabled>
 				Faint
-			</Button>{' '}
+			</Button>
 			<Button appearance="link" disabled>
 				Link
 			</Button>
-		</p>
-		<p>
+		</ButtonWrap>
+		<br />
+		<br />
+		<ButtonWrap>
 			<Button appearance="primary" isSoft disabled>
 				Primary soft
-			</Button>{' '}
+			</Button>
 			<Button appearance="hero" isSoft disabled>
 				Hero soft
-			</Button>{' '}
+			</Button>
 			<Button appearance="neutral" isSoft disabled>
 				Neutral soft
-			</Button>{' '}
+			</Button>
 			<Button appearance="faint" isSoft disabled>
 				Faint soft
 			</Button>
-		</p>
+		</ButtonWrap>
 	</>
 );

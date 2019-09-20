@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../src';
+import { Button, ButtonWrap } from '../src';
 
 export default () => (
 	<>
@@ -12,55 +12,59 @@ export default () => (
 			Active buttons with a <code>&lt;button&gt;</code> tag
 		</h2>
 		<h3>Standard</h3>
-		<p>
-			<Button appearance="primary">Primary default</Button>{' '}
-			<Button appearance="hero">Hero default</Button>{' '}
-			<Button appearance="neutral">Neutral default</Button>{' '}
+		<ButtonWrap>
+			<Button appearance="primary">Primary default</Button>
+			<Button appearance="hero">Hero default</Button>
+			<Button appearance="neutral">Neutral default</Button>
 			<Button appearance="faint">Faint default</Button>
-		</p>
-		<p>
+		</ButtonWrap>
+		<br />
+		<br />
+		<ButtonWrap>
 			<Button appearance="primary" className="active">
 				Primary active
-			</Button>{' '}
+			</Button>
 			<Button appearance="hero" className="active">
 				Hero active
-			</Button>{' '}
+			</Button>
 			<Button appearance="neutral" className="active">
 				Neutral active
-			</Button>{' '}
+			</Button>
 			<Button appearance="faint" className="active">
 				Faint active
 			</Button>
-		</p>
+		</ButtonWrap>
 		<h3>Soft</h3>
-		<p>
+		<ButtonWrap>
 			<Button appearance="primary" isSoft>
 				Primary soft default
-			</Button>{' '}
+			</Button>
 			<Button appearance="hero" isSoft>
 				Hero soft default
-			</Button>{' '}
+			</Button>
 			<Button appearance="neutral" isSoft>
 				Neutral soft default
-			</Button>{' '}
+			</Button>
 			<Button appearance="faint" isSoft>
 				Faint soft default
 			</Button>
-		</p>
-		<p>
+		</ButtonWrap>
+		<br />
+		<br />
+		<ButtonWrap>
 			<Button appearance="primary" className="active" isSoft>
 				Primary soft active
-			</Button>{' '}
+			</Button>
 			<Button appearance="hero" className="active" isSoft>
 				Hero soft active
-			</Button>{' '}
+			</Button>
 			<Button appearance="neutral" className="active" isSoft>
 				Neutral soft active
-			</Button>{' '}
+			</Button>
 			<Button appearance="faint" className="active" isSoft>
 				Faint soft active
 			</Button>
-		</p>
+		</ButtonWrap>
 
 		<hr />
 
@@ -68,62 +72,66 @@ export default () => (
 			Active buttons with an <code>&lt;a&gt;</code> tag
 		</h2>
 		<h3>Standard</h3>
-		<p>
+		<ButtonWrap>
 			<Button href="#0" appearance="primary">
 				Primary default
-			</Button>{' '}
+			</Button>
 			<Button href="#0" appearance="hero">
 				Hero default
-			</Button>{' '}
+			</Button>
 			<Button href="#0" appearance="neutral">
 				Neutral default
-			</Button>{' '}
+			</Button>
 			<Button href="#0" appearance="faint">
 				Faint default
 			</Button>
-		</p>
-		<p>
+		</ButtonWrap>
+		<br />
+		<br />
+		<ButtonWrap>
 			<Button href="#0" appearance="primary" className="active">
 				Primary active
-			</Button>{' '}
+			</Button>
 			<Button href="#0" appearance="hero" className="active">
 				Hero active
-			</Button>{' '}
+			</Button>
 			<Button href="#0" appearance="neutral" className="active">
 				Neutral active
-			</Button>{' '}
+			</Button>
 			<Button href="#0" appearance="faint" className="active">
 				Faint active
 			</Button>
-		</p>
+		</ButtonWrap>
 		<h3>Soft</h3>
-		<p>
+		<ButtonWrap>
 			<Button href="#0" appearance="primary" isSoft>
 				Primary soft default
-			</Button>{' '}
+			</Button>
 			<Button href="#0" appearance="hero" isSoft>
 				Hero soft default
-			</Button>{' '}
+			</Button>
 			<Button href="#0" appearance="neutral" isSoft>
 				Neutral soft default
-			</Button>{' '}
+			</Button>
 			<Button href="#0" appearance="faint" isSoft>
 				Faint soft default
 			</Button>
-		</p>
-		<p>
+		</ButtonWrap>
+		<br />
+		<br />
+		<ButtonWrap>
 			<Button href="#0" appearance="primary" className="active" isSoft>
 				Primary soft active
-			</Button>{' '}
+			</Button>
 			<Button href="#0" appearance="hero" className="active" isSoft>
 				Hero soft active
-			</Button>{' '}
+			</Button>
 			<Button href="#0" appearance="neutral" className="active" isSoft>
 				Neutral soft active
-			</Button>{' '}
+			</Button>
 			<Button href="#0" appearance="faint" className="active" isSoft>
 				Faint soft active
 			</Button>
-		</p>
+		</ButtonWrap>
 	</>
 );
