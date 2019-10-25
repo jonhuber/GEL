@@ -57,6 +57,9 @@ class MyApp extends App {
 				// TODO: using router serverside won't work in getInitialProps,
 				// leaving it as placeholder for now
 				// Router.push(destination);
+				// Have also tried with the below, but breaks on certain routes. Things to discuss on Monday!
+				// res.writeHead(302, { Location: destination });
+				// res.end();
 			} else {
 				// If no, display brand picker
 				console.log(`cookie found, but not matching any brand! (${selectedBrandCookie})`);
