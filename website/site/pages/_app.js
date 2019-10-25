@@ -72,13 +72,11 @@ class MyApp extends App {
 		}
 
 		return (
-			<RouteChecker>
-				<BrandProvider>
-					<Layout>
-						<Component {...pageProps} />
-					</Layout>
-				</BrandProvider>
-			</RouteChecker>
+			<BrandProvider>
+				<Layout>
+					<Component {...pageProps} />
+				</Layout>
+			</BrandProvider>
 		);
 	}
 }
