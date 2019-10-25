@@ -1,0 +1,37 @@
+{
+	"name": "gel3-website",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "cross-env NODE_ENV=development DISABLE_LOGGING=true keystone dev",
+		"build": "cross-env NODE_ENV=production keystone build"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@brisk-docs/react-changelogs": "^0.1.9",
+		"@emotion/core": "^10.0.22",
+		"@emotion/weak-memoize": "^0.2.4",
+		"@keystonejs/adapter-knex": "^5.0.0",
+		"@keystonejs/app-admin-ui": "^5.0.0",
+		"@keystonejs/app-graphql": "^5.0.0",
+		"@keystonejs/app-next": "^5.0.0",
+		"@keystonejs/keystone": "^5.0.0",
+		"cookie": "^0.4.0",
+		"cross-env": "^6.0.3",
+		"dotenv": "^8.2.0",
+		"facepaint": "^1.2.1",
+		"js-cookie": "^2.2.1",
+		"lodash.merge": "^4.6.2",
+		"next": "^9.1.1",
+		"normalize.css": "^8.0.1",
+		"react": "^16.11.0",
+		"react-dom": "^16.11.0",
+		"react-live": "^2.2.1",
+		"react-markdown": "^4.2.2",
+		"semver": "^6.3.0"
+	}
+}

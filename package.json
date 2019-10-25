@@ -36,11 +36,13 @@
 		"test": "yarn test:format && yarn test:unit && yarn test:integration",
 		"postinstall": "manypkg check && preconstruct dev",
 		"publish-packages": "yarn build && yarn changeset publish",
-		"version-packages": "yarn changeset version"
+		"version-packages": "yarn changeset version",
+		"website:start": "yarn workspace gel3-website start"
 	},
 	"workspaces": [
 		"components/*",
-		"brands/*"
+		"brands/*",
+		"website"
 	],
 	"jest": {
 		"testRegex": "\\.spec.js$",
