@@ -58,8 +58,12 @@ class MyApp extends App {
 				// leaving it as placeholder for now
 				// Router.push(destination);
 				// Have also tried with the below, but breaks on certain routes. Things to discuss on Monday!
-				// res.writeHead(302, { Location: destination });
-				// res.end();
+				// if (res) {
+				// 	res.writeHead(302, { Location: destination });
+				// 	res.end();
+				// } else {
+				// 	Router.push(destination);
+				// }
 			} else {
 				// If no, display brand picker
 				console.log(`cookie found, but not matching any brand! (${selectedBrandCookie})`);
