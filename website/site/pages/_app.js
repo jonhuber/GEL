@@ -11,6 +11,7 @@ const setCookie = (res, name, value) => {
 		'Set-Cookie',
 		cookie.serialize(name, value, {
 			httpOnly: true,
+			path: '/',
 			maxAge: 60 * 60 * 24 * 7, // 1 week
 		})
 	);
@@ -44,13 +45,18 @@ class MyApp extends App {
 		const selectedBrandCookie = getCookieByName(req.headers.cookie, 'gel_selected_brand');
 		// If yes, redirect to the brand path
 		if (selectedBrandCookie) {
-			const brandMatch = brandsList.find(b => b === firstSegment.toUpperCase());
+			console.log(`found cookie: ${selectedBrandCookie}`);
+			const brandMatch = brandsList.find(b => {
+				return b === selectedBrandCookie.toUpperCase();
+			});
+			console.log({ brandMatch });
 			if (brandMatch) {
+				console.log(`cookie matches brand! - let's go to ${brandMatch}`);
 				const destination = route.replace('[brand]', selectedBrandCookie);
 				// Route the user to the destination
 				// TODO: using router serverside won't work in getInitialProps,
 				// leaving it as placeholder for now
-				// Router.push(destination)
+				// Router.push(destination);
 			} else {
 				// If no, display brand picker
 				console.log(`cookie found, but not matching any brand! (${selectedBrandCookie})`);
