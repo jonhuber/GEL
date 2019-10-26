@@ -1,20 +1,20 @@
 /** @jsx jsx */
 import { jsx } from '../core';
-import { useCurrentBrand } from '../brand-provider';
+import { useBrandSwitcher } from '../brand-switcher-provider';
 
 const BrandSwitcher = () => {
-	const { brands, setCurrentBrand } = useCurrentBrand();
+	const { brands, setBrand } = useBrandSwitcher();
 	return (
 		<ul css={{ listStyle: 'none', display: 'flex', flexWrap: 'wrap', padding: 0 }}>
 			{Object.entries(brands).map((brand, i) => {
-				return <BrandButton key={i} brand={brand} setCurrentBrand={setCurrentBrand} />;
+				return <BrandButton key={i} brand={brand} setBrand={setBrand} />;
 			})}
 		</ul>
 	);
 };
 
-const BrandButton = ({ brand: [brandName, brand], setCurrentBrand }) => {
-	const { currentBrand } = useCurrentBrand();
+const BrandButton = ({ brand: [brandName, brand], setBrand }) => {
+	const { brand: currentBrand } = useBrandSwitcher();
 	return (
 		<li>
 			<button
@@ -30,7 +30,7 @@ const BrandButton = ({ brand: [brandName, brand], setCurrentBrand }) => {
 						cursor: 'pointer',
 					},
 				}}
-				onClick={() => setCurrentBrand(brand)}
+				onClick={() => setBrand(brandName)}
 			>
 				{brandName}
 			</button>

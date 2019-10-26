@@ -1,7 +1,7 @@
-import { useCurrentBrand } from '../brand-provider';
+import { useBrandSwitcher } from '../brand-switcher-provider';
 
 const BrandPicker = ({ onClick }) => {
-	const { brands } = useCurrentBrand();
+	const { brands } = useBrandSwitcher();
 	return (
 		<div>
 			<h2>Pick your brand!</h2>

@@ -1,19 +1,19 @@
 /** @jsx jsx */
 import { useState } from 'react';
 import { jsx } from '@emotion/core';
-import Normalize from './normalize';
 
-import { GEL } from '../core';
+import { GEL } from '@westpac/core';
 
 import Footer from '../footer';
+import Normalize from './normalize';
 import Sidebar from '../sidebar';
 
-import { useCurrentBrand } from '../brand-provider';
+import { useBrandSwitcher } from '../brand-switcher-provider';
 
 const Layout = ({ children }) => {
-	const { currentBrand } = useCurrentBrand();
+	const { brands, brand } = useBrandSwitcher();
 	return (
-		<GEL brand={currentBrand}>
+		<GEL brand={brands[brand]}>
 			<Normalize />
 			<GridContainer>
 				<SidebarContainer>

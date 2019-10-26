@@ -3,7 +3,7 @@ import App from 'next/app';
 import cookie from 'cookie';
 import Router from 'next/router';
 
-import { BrandProvider } from '../components/brand-provider';
+import { BrandSwitcherProvider } from '../components/brand-switcher-provider';
 import Layout from '../components/layout';
 
 const setCookie = (res, name, value) => {
@@ -85,11 +85,11 @@ class MyApp extends App {
 		}
 
 		return (
-			<BrandProvider>
+			<BrandSwitcherProvider>
 				<Layout>
 					<Component {...pageProps} />
 				</Layout>
-			</BrandProvider>
+			</BrandSwitcherProvider>
 		);
 	}
 }

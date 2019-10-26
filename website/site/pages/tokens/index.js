@@ -1,10 +1,12 @@
 /** @jsx jsx */
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { jsx } from '@emotion/core';
+import { jsx } from '@westpac/core';
 
-import Heading from '../../../components/heading';
-import { Colors, Spacing, Type, Packs } from '../../../components/tokens';
+import Heading from '../../components/heading';
+import { Colors, Spacing, Type, Packs } from '../../components/tokens';
+
+import { ColorsExample } from '@westpac/core';
 
 const TokensPage = () => {
 	const [ready, setReady] = useState(false);
@@ -26,6 +28,8 @@ const TokensPage = () => {
 	return (
 		<div>
 			<Heading>You need to select a brand to see this!</Heading>
+
+			<ColorsExample></ColorsExample>
 			<Heading>Colors</Heading>
 			<Colors />
 
