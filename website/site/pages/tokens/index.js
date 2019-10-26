@@ -1,34 +1,22 @@
 /** @jsx jsx */
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import { jsx } from '@westpac/core';
 
 import Heading from '../../components/heading';
 import { Colors, Spacing, Type, Packs } from '../../components/tokens';
 
-import { ColorsExample } from '@westpac/core';
+import ColorsExample from './examples/00-tokens-colors';
+
+// import { ColorsExample } from '@westpac/core';
 
 const TokensPage = () => {
-	const [ready, setReady] = useState(false);
-	const router = useRouter();
+	// const [ready, setReady] = useState(false);
 
-	// useEffect(() => {
-	// 	// Check for preferred brand in localStorage
-	// 	const selectedBrand = localStorage.getItem('gel-selectedBrand');
-	// 	if (selectedBrand) {
-	// 		router.push(`/tokens/${selectedBrand}`);
-	// 	} else {
-	// 		console.log('no favourite brand yet - show the selector!');
-	// 	}
-	// });
-
-	if (!ready) {
-		return <p>loading...</p>;
-	}
+	// if (!ready) {
+	// 	return <p>loading...</p>;
+	// }
 	return (
 		<div>
-			<Heading>You need to select a brand to see this!</Heading>
-
 			<ColorsExample></ColorsExample>
 			<Heading>Colors</Heading>
 			<Colors />
@@ -53,5 +41,7 @@ const TokensPage = () => {
 		</div>
 	);
 };
+
+const Spacer = () => <div css={{ height: 60 }}></div>;
 
 export default TokensPage;

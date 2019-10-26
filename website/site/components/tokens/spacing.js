@@ -1,11 +1,9 @@
 /** @jsx jsx */
 import { Fragment, useState } from 'react';
 
-import { jsx } from '../../components/core';
-import { useCurrentBrand } from '../brand-provider';
-
+import { jsx, useBrand } from '@westpac/core';
 export const Spacing = () => {
-	const { currentBrand: TOKENS } = useCurrentBrand();
+	const TOKENS = useBrand();
 	const { tints, ...primaryColors } = TOKENS.COLORS;
 	const [showMinor, setShowMinor] = useState(true);
 

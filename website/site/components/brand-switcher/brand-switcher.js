@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from '../core';
+import { jsx, useBrand } from '@westpac/core';
 import { useBrandSwitcher } from '../brand-switcher-provider';
 
 const BrandSwitcher = () => {
@@ -13,8 +13,9 @@ const BrandSwitcher = () => {
 	);
 };
 
-const BrandButton = ({ brand: [brandName, brand], setBrand }) => {
-	const { brand: currentBrand } = useBrandSwitcher();
+const BrandButton = ({ brand: [brandName, brandData], setBrand }) => {
+	const { brand: currentBrandName } = useBrandSwitcher();
+
 	return (
 		<li>
 			<button
@@ -23,10 +24,10 @@ const BrandButton = ({ brand: [brandName, brand], setBrand }) => {
 					height: 40,
 					width: 40,
 					fontSize: 12,
-					backgroundColor: brand === currentBrand ? '#cbffc3' : '#f7f7f7',
+					backgroundColor: brandName === currentBrandName ? '#cbffc3' : '#f7f7f7',
 					margin: 2,
 					':hover': {
-						backgroundColor: brand === currentBrand ? '#b2f7a7' : '#e7e7e7',
+						backgroundColor: brandName === currentBrandName ? '#b2f7a7' : '#e7e7e7',
 						cursor: 'pointer',
 					},
 				}}

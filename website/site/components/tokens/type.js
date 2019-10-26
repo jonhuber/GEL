@@ -1,9 +1,8 @@
 /** @jsx jsx */
-import { jsx } from '../../components/core';
-import { useCurrentBrand } from '../brand-provider';
+import { jsx, useBrand } from '@westpac/core';
 
 export const Type = () => {
-	const { currentBrand: TOKENS } = useCurrentBrand();
+	const TOKENS = useBrand();
 	return (
 		<div
 			css={{

@@ -1,9 +1,8 @@
 /** @jsx jsx */
-import { jsx } from '../core';
-import { useCurrentBrand } from '../brand-provider';
+import { jsx, useBrand } from '@westpac/core';
 
 export const Colors = () => {
-	const { currentBrand: TOKENS } = useCurrentBrand();
+	const TOKENS = useBrand();
 	const { tints, ...primaryColors } = TOKENS.COLORS;
 	return (
 		<ul css={{ listStyle: 'none', margin: 0, padding: 0 }}>

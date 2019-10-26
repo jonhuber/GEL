@@ -1,9 +1,8 @@
 /** @jsx jsx */
-import { jsx } from '../core';
-import { useCurrentBrand } from '../brand-provider';
+import { jsx, useBrand } from '@westpac/core';
 
 export const Packs = () => {
-	const { currentBrand: TOKENS } = useCurrentBrand();
+	const TOKENS = useBrand();
 	return Object.entries(TOKENS.PACKS.headline).map((pack, i) => {
 		return <Headline pack={pack} key={i} />;
 	});
