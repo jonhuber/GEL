@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Changelog from '../../components/changelog';
-import LiveCode from '../../components/live-code';
+import ReactLive from '../../components/react-live';
 
 const data = `# This package itself
 ## 2.0.0
@@ -20,7 +20,15 @@ export default function Components() {
 	return (
 		<Fragment>
 			<h1>This is the components page!</h1>
-			<LiveCode />
+			<ReactLive />
+			{/* lol,lazy spacer below */}
+			<br />
+			<br />
+			<br />
+			<hr />
+			<br />
+			<br />
+			<br />
 			<Log />
 		</Fragment>
 	);
