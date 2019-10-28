@@ -8,6 +8,7 @@ const ReactLive = ({
 	scope = {},
 }) => (
 	<LiveProvider code={code}>
+		{console.log({ scope })}
 		<div css={{ display: 'flex' }}>
 			<LiveEditor
 				css={{
