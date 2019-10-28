@@ -1,9 +1,3 @@
-export const BOM = `<Alert look="BOM">
-	<strong>Heads up!</strong> This alert needs your attention, but it’s not super important.{' '}
-	<a href="#">Link</a>
-</Alert>
-`;
-
 export const warning = `
 <Alert look="warning">
   <strong>Warning!</strong> Better check yourself, you’re not looking too good.{' '}
