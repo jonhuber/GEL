@@ -1,4 +1,5 @@
-import BrandPicker from '../components/brand-picker';
+import React from 'react';
+import BrandPicker from '../ui/brand-picker';
 
 const Homepage = () => {
 	return (

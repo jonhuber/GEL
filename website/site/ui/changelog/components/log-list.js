@@ -65,7 +65,7 @@ export const NoMatch = styled.div`
 	min-height: 120px;
 `;
 
-export default class Changelog extends React.Component {
+export default class LogList extends React.Component {
 	state = {
 		currentPage: 1,
 	};

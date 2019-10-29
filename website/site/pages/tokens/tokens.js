@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { jsx, useBrand } from '@westpac/core';
 
-import Heading from '../../components/heading';
+import Heading from '../../ui/heading';
 
 const TokensPage = () => {
 	const brand = useBrand();

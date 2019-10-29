@@ -1,3 +1,4 @@
+import React from 'react';
 import { useBrandSwitcher } from '../brand-switcher-provider';
 
 const BrandPicker = ({ onClick }) => {

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import Changelog from '../../components/changelog';
-import ReactLive from '../../components/react-live';
+import ChangelogWrapper from '../../ui/changelog';
+import ReactLive from '../../ui/react-live';
 
 const data = `# This package itself
 ## 2.0.0
@@ -29,7 +29,7 @@ export default function Components() {
 			<br />
 			<br />
 			<br />
-			<Log />
+			<ChangelogWrapper data={data} />
 		</Fragment>
 	);
 }

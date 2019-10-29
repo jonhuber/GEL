@@ -1,8 +1,8 @@
 import React from 'react';
 import App from 'next/app';
 
-import { BrandSwitcherProvider } from '../components/brand-switcher-provider';
-import Layout from '../components/layout';
+import { BrandSwitcherProvider } from '../ui/brand-switcher-provider';
+import Layout from '../ui/layout';
 
 class MyApp extends App {
 	render() {
