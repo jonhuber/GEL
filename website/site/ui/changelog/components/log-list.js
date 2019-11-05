@@ -1,6 +1,8 @@
-import * as React from 'react';
+/** @jsx jsx */
+import React from 'react';
+import { jsx } from '@westpac/core';
 import ReactMarkdown from 'react-markdown';
-import styled from '@emotion/styled';
+
 // import Pagination from '@atlaskit/pagination';
 import filterChangelog from '../utils/filter-changelog';
 import divideChangelog from '../utils/divide-changelog';
@@ -8,6 +10,7 @@ import divideChangelog from '../utils/divide-changelog';
 function getVersion(str) {
 	return str.match(/^(\d+\.\d+\.\d+)/);
 }
+
 const Heading = ({ children, href }) => {
 	const childrenArray = React.Children.toArray(children);
 	const title = childrenArray[0];
@@ -33,37 +36,6 @@ const Heading = ({ children, href }) => {
 		</h3>
 	);
 };
-
-const LogItem = styled.div`
-	margin-bottom: 1em;
-	${p =>
-		p.major
-			? `
-          &:not(:first-of-type) {
-            border-top: 2px solid red;
-            margin-top: 20px;
-            padding-top: 20px;
-          }
-        `
-			: null};
-`;
-
-const PaginationContainer = styled.div`
-	display: flex;
-	justify-content: center;
-`;
-
-export const NoMatch = styled.div`
-	align-items: center;
-	background-color: red;
-	border-radius: 4px;
-	color: blue;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	margin-top: 20px;
-	min-height: 120px;
-`;
 
 export default class LogList extends React.Component {
 	state = {
@@ -101,7 +73,21 @@ export default class LogList extends React.Component {
 		return (
 			<div>
 				{!filteredLogs.length ? (
-					<NoMatch>No matching versions &mdash; please try again.</NoMatch>
+					<div
+						css={{
+							alignItems: 'center',
+							backgroundColor: '#f7f7f7',
+							borderRadius: 4,
+							color: 'blue',
+							display: 'flex',
+							flexDirection: 'column',
+							justifyContent: 'center',
+							marginTop: 20,
+							minHeight: 120,
+						}}
+					>
+						No matching versions &mdash; please try again.
+					</div>
 				) : (
 					filteredLogs.map((v, i) => {
 						const major = v.version.substr(0, 1);
@@ -110,8 +96,19 @@ export default class LogList extends React.Component {
 						const href = getUrl(v.version);
 
 						return (
-							/* eslint-disable react/no-array-index-key */
-							<LogItem key={`${v.version}-${i}`} major={majorHasChanged}>
+							<div
+								key={`${v.version}-${i}`}
+								css={[
+									{ marginBottom: '1em' },
+									majorHasChanged && {
+										'&:not(:first-of-type)': {
+											borderTop: '2px solid #e7e7e7',
+											marginTop: 20,
+											paddingTop: 20,
+										},
+									},
+								]}
+							>
 								<ReactMarkdown
 									escapeHtml
 									source={v.md}
@@ -119,7 +116,7 @@ export default class LogList extends React.Component {
 										Heading: props => <Heading packageName={packageName} href={href} {...props} />,
 									}}
 								/>
-							</LogItem>
+							</div>
 						);
 					})
 				)}
