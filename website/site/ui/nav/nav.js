@@ -6,7 +6,7 @@ export default function Nav() {
 		<ul>
 			<LinkItem name="Welcome!" path="/" />
 			<LinkItem name="Tokens" path="/tokens" />
-			<LinkItem name="Components" path="/components" />
+			<LinkItem name="A11y" path="/components/a11y" />
 			<LinkItem name="Alert" path="/components/alert" />
 		</ul>
 	);

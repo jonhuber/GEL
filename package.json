@@ -42,6 +42,7 @@
 	"workspaces": [
 		"components/*",
 		"brands/*",
+		"utils",
 		"website"
 	],
 	"jest": {

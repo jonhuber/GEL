@@ -1,3 +1,20 @@
 const withPreconstruct = require('@preconstruct/next');
 
-module.exports = withPreconstruct();
+const config = {
+	webpack: (config, { isServer }) => {
+		config.module.rules.push({
+			test: /\.md$/,
+			use: 'raw-loader',
+		});
+
+		// Not runnig fs clientside
+		if (!isServer) {
+			config.node = {
+				fs: 'empty',
+			};
+		}
+
+		return config;
+	},
+};
+module.exports = withPreconstruct(config);
