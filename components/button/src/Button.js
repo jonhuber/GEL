@@ -1,14 +1,10 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
-import { Content } from './Content';
+import { jsx, useBrand, useMediaQuery, asArray, merge } from '@westpac/core';
 import PropTypes from 'prop-types';
 
-// ==============================
-// Utils
-// ==============================
-
-const asArray = val => (Array.isArray(val) ? val : [val]);
+import { Content } from './Content';
+import pkg from '../package.json';
 
 // ==============================
 // Component
@@ -22,22 +18,29 @@ export const Button = ({
 	iconAfter,
 	iconBefore,
 	justify,
+	disabled,
 	srOnlyText,
 	tag: Tag,
 	onClick,
 	children,
 	...props
 }) => {
-	const { COLORS } = useBrand();
+	const { COLORS, TYPE, [pkg.name]: overridesWithTokens } = useBrand();
 	const mq = useMediaQuery();
 
 	// We don't support soft links, so don't want them to cause styling issues
 	if (soft && look === 'link') soft = false;
 
+	const bg = {
+		background:
+			'linear-gradient(to bottom,rgb(255, 62, 24) 16.66666666666667%,rgb(252, 154, 0) 16.66666666666667%,rgb(252, 154, 0) 33.33333333333333%,rgb(255, 216, 0) 33.33333333333333%,rgb(255, 216, 0) 33.33333333333333%,rgb(255, 216, 0) 50.00000000000001%,rgb(57, 234, 124) 50.00000000000001%,rgb(57, 234, 124) 66.66666666666668%,rgb(11, 178, 255) 66.66666666666668%,rgb(11, 178, 255) 83.33333333333335%,rgb(152, 90, 255) 83.33333333333335%)',
+		color: COLORS.text,
+	};
+
 	// Appearance styling
-	const styleAppearance = {
+	const overrides = {
 		primary: {
-			standard: {
+			standardCSS: {
 				color: '#fff',
 				backgroundColor: COLORS.primary,
 				borderColor: COLORS.primary,
@@ -49,7 +52,7 @@ export const Button = ({
 					backgroundColor: COLORS.tints.primary50,
 				},
 			},
-			soft: {
+			softCSS: {
 				color: COLORS.text,
 				backgroundColor: '#fff',
 				borderColor: COLORS.primary,
@@ -65,7 +68,7 @@ export const Button = ({
 			},
 		},
 		hero: {
-			standard: {
+			standardCSS: {
 				color: '#fff', //TODO: STG uses `COLORS.text`
 				backgroundColor: COLORS.hero,
 				borderColor: COLORS.hero,
@@ -77,7 +80,7 @@ export const Button = ({
 					backgroundColor: COLORS.tints.hero50,
 				},
 			},
-			soft: {
+			softCSS: {
 				color: COLORS.text,
 				backgroundColor: '#fff',
 				borderColor: COLORS.hero,
@@ -93,7 +96,7 @@ export const Button = ({
 			},
 		},
 		faint: {
-			standard: {
+			standardCSS: {
 				color: COLORS.muted,
 				backgroundColor: COLORS.light,
 				borderColor: COLORS.border,
@@ -102,7 +105,7 @@ export const Button = ({
 					backgroundColor: '#fff',
 				},
 			},
-			soft: {
+			softCSS: {
 				color: COLORS.muted,
 				backgroundColor: '#fff',
 				borderColor: COLORS.border,
@@ -113,13 +116,19 @@ export const Button = ({
 			},
 		},
 		link: {
-			standard: {
+			standardCSS: {
 				color: COLORS.primary,
 				backgroundColor: 'transparent',
 				borderColor: 'transparent',
 			},
 		},
+		[atob('cHJpZGU=')]: {
+			standardCSS: { ...bg },
+			soft: { ...bg },
+		},
+		Content,
 	};
+	merge(overrides, overridesWithTokens);
 
 	// Size styling (responsive)
 	const sizeArr = asArray(size);
@@ -157,13 +166,13 @@ export const Button = ({
 	return (
 		<Tag
 			type={Tag === 'button' && props.onClick ? 'button' : undefined}
+			disabled={disabled}
 			css={mq({
 				alignItems: 'center', //vertical
 				appearance: 'none',
 				border: '1px solid transparent',
 				borderRadius: '0.1875rem',
 				cursor: 'pointer',
-				fontWeight: 400,
 				justifyContent: justify ? 'space-between' : 'center', //horizontal
 				lineHeight: 1.5,
 				textAlign: 'center',
@@ -173,6 +182,8 @@ export const Button = ({
 				userSelect: 'none',
 				verticalAlign: look === 'link' ? 'baseline' : 'middle',
 				whiteSpace: 'nowrap',
+				boxSizing: 'border-box',
+				...TYPE.bodyFont[400],
 
 				// Hover state (but excluded if disabled or inside a disabled fieldset)
 				':hover:not(:disabled), fieldset:not(:disabled) &:hover': {
@@ -201,7 +212,7 @@ export const Button = ({
 					}
 					return sizeMap[s].height;
 				}),
-				...styleAppearance[look][soft ? 'soft' : 'standard'],
+				...overrides[look][soft ? 'softCSS' : 'standardCSS'],
 				display: blockArr.map(b => b !== null && (b ? 'flex' : 'inline-flex')),
 				width: blockArr.map(b => b !== null && (b ? '100%' : 'auto')),
 			})}
@@ -210,7 +221,7 @@ export const Button = ({
 		>
 			{/* `<input>` elements cannot have children; they would use a `value` prop) */}
 			{Tag !== 'input' ? (
-				<Content
+				<overrides.Content
 					size={size}
 					block={block}
 					iconAfter={iconAfter}
@@ -218,7 +229,7 @@ export const Button = ({
 					srOnlyText={srOnlyText}
 				>
 					{children}
-				</Content>
+				</overrides.Content>
 			) : null}
 		</Tag>
 	);
@@ -253,6 +264,11 @@ Button.propTypes = {
 	 * Removes background colour and adjusts text colour.
 	 */
 	soft: PropTypes.bool,
+
+	/**
+	 * Button disabled
+	 */
+	disabled: PropTypes.bool.isRequired,
 
 	/**
 	 * Block mode.
@@ -299,4 +315,5 @@ Button.defaultProps = {
 	soft: false,
 	block: false,
 	justify: false,
+	disabled: false,
 };

@@ -1,12 +1,13 @@
 /** @jsx jsx */
 
-import { GEL, jsx, useBrand } from '@westpac/core';
+import { GEL, jsx, useBrand, useFonts } from '@westpac/core';
 
 function Example({ brand }) {
 	const { TYPE } = useBrand();
+	const weights = ['100', '200', '300', '400', '500', '600', '700', '800', '900'];
 
 	return (
-		<GEL brand={brand}>
+		<GEL brand={brand} css={{ ...useFonts({ path: 'assets/' }) }}>
 			<h2>Type</h2>
 			<div
 				css={{
@@ -21,7 +22,7 @@ function Example({ brand }) {
 						fontFamily: TYPE.brandFont.fontFamily,
 					}}
 				>
-					Brand front
+					Brand font
 				</span>
 
 				<ul
@@ -31,14 +32,13 @@ function Example({ brand }) {
 						margin: 0,
 					}}
 				>
-					{TYPE.brandFont.weights.map((weight, i) => (
+					{weights.map((weight, i) => (
 						<li
 							key={i}
 							css={{
 								display: 'block',
 								fontSize: '2rem',
-								fontFamily: TYPE.brandFont.fontFamily,
-								fontWeight: weight,
+								...TYPE.brandFont[weight],
 							}}
 						>
 							weight {weight}
@@ -54,7 +54,7 @@ function Example({ brand }) {
 						fontFamily: TYPE.bodyFont.fontFamily,
 					}}
 				>
-					Body front
+					Body font
 				</span>
 
 				<ul
@@ -64,14 +64,13 @@ function Example({ brand }) {
 						margin: 0,
 					}}
 				>
-					{TYPE.bodyFont.weights.map((weight, i) => (
+					{weights.map((weight, i) => (
 						<li
 							key={i}
 							css={{
 								display: 'block',
 								fontSize: '2rem',
-								fontFamily: TYPE.bodyFont.fontFamily,
-								fontWeight: weight,
+								...TYPE.bodyFont[weight],
 							}}
 						>
 							weight {weight}

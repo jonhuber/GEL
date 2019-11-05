@@ -9,18 +9,17 @@ import PropTypes from 'prop-types';
 // ==============================
 
 export const Text = ({ size, width, inline, invalid, children, ...props }) => {
-	const { COLORS, PACKS } = useBrand();
+	const { COLORS, PACKS, TYPE } = useBrand();
 	const mq = useMediaQuery();
 
 	// We'll add important to focus state for text inputs so they are always visible even with the useFocus helper
-	const focus = PACKS.focus;
+	const focus = { ...PACKS.focus };
 	focus.outline += ' !important';
 	const borderWidth = 1; //px
 	const lineHeight = 1.5;
 	const extras = `${(p => `${p} + ${p}`)(sizeMap[size].padding[1])} + ${(b => `${b} + ${b}`)(
 		`${borderWidth}px`
 	)}`;
-
 
 	return (
 		<input
@@ -30,7 +29,6 @@ export const Text = ({ size, width, inline, invalid, children, ...props }) => {
 				width: inline ? ['100%', 'auto'] : '100%',
 				appearance: 'none',
 				lineHeight: lineHeight,
-				fontWeight: 400,
 				color: COLORS.text,
 				backgroundColor: '#fff',
 				border: `${borderWidth}px solid ${
@@ -44,11 +42,12 @@ export const Text = ({ size, width, inline, invalid, children, ...props }) => {
 				height: `calc(${lineHeight}em + ${(p => `${p[0]} + ${p[2] || p[0]}`)(
 					sizeMap[size].padding
 				)} + ${2 * borderWidth}px)`,
+				...TYPE.bodyFont[400],
 
 				'&::placeholder': {
 					opacity: 1, // Override Firefox's unusual default opacity
-					fontWeight: 300,
 					color: COLORS.tints.text50,
+					...TYPE.bodyFont[300],
 				},
 
 				// Focus styling (for all, not just keyboard users)

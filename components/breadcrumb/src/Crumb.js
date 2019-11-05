@@ -1,8 +1,9 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
-import { ArrowRightIcon } from '@westpac/icon';
+import { jsx, useBrand, merge } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
+import { ArrowRightIcon } from '@westpac/icon';
+import pkg from '../package.json';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -13,8 +14,16 @@ import React from 'react';
 /**
  * Crumb: Breadcrumbs are styled navigational links used to indicate a user journey or path. They are a simple, effective and proven method to aid orientation.
  */
-export const Crumb = ({ current, href, text, label, onClick, ...props }) => {
-	const { COLORS } = useBrand();
+export const Crumb = ({ current, href, text, label, icon: Icon, onClick, ...props }) => {
+	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
+
+	const overrides = {
+		crumbCSS: {},
+		crumbLinkCSS: {},
+		crumbLable: VisuallyHidden,
+		Icon,
+	};
+	merge(overrides, overridesWithTokens);
 
 	return (
 		<li
@@ -24,10 +33,11 @@ export const Crumb = ({ current, href, text, label, onClick, ...props }) => {
 				position: 'relative',
 				color: COLORS.text,
 				verticalAlign: 'middle',
+				...overrides.crumbCSS,
 			}}
 			{...props}
 		>
-			{current && <VisuallyHidden>{label}</VisuallyHidden>}
+			{current && <overrides.crumbLable>{label}</overrides.crumbLable>}
 			<a
 				href={current ? null : href}
 				onClick={onClick}
@@ -41,12 +51,14 @@ export const Crumb = ({ current, href, text, label, onClick, ...props }) => {
 					':focus, :hover': {
 						textDecoration: current ? 'none' : 'underline',
 					},
+
+					...overrides.crumbLinkCSS,
 				}}
 			>
 				{text}
 			</a>
 			{!current && (
-				<ArrowRightIcon
+				<overrides.Icon
 					aria-hidden="true"
 					size="small"
 					color={COLORS.primary}
@@ -87,8 +99,14 @@ Crumb.propTypes = {
 	 * The label of the current page
 	 */
 	label: PropTypes.string.isRequired,
+
+	/**
+	 * The icon between Crumbs
+	 */
+	icon: PropTypes.func.isRequired,
 };
 
 Crumb.defaultProps = {
 	label: 'Current page:',
+	icon: ArrowRightIcon,
 };

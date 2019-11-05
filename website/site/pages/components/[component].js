@@ -45,7 +45,7 @@ let Component = ({ name }) => {
 						<Heading tag="h2" size={6} css={{ marginTop: 40, marginBottom: 10 }}>
 							Code examples
 						</Heading>
-						<Examples examples={examples} />
+						<Examples examples={examples} name={name} />
 						<Heading tag="h2" size={6} css={{ marginTop: 40, marginBottom: 10 }}>
 							Changelog
 						</Heading>
@@ -65,7 +65,7 @@ Component.getInitialProps = async ({ query: { component } }) => {
 // Examples
 // ==============================
 
-const Examples = ({ examples }) => {
+const Examples = ({ examples, name }) => {
 	// Bail out if there are no examples in the snippets folder
 	if (!Object.keys(examples).length > 0 || Object.keys(examples)[0] === 'default') {
 		return (

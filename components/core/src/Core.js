@@ -2,7 +2,6 @@
 
 import { Global, jsx } from '@emotion/core';
 import { Fragment } from 'react';
-import merge from 'lodash.merge';
 
 import { useBrand } from './Brand';
 import { reset } from './reset';
@@ -16,14 +15,16 @@ export const Core = ({ children }) => {
 			<Global
 				styles={{
 					body: {
-						fontWeight: 400,
 						fontSize: '0.875rem', // (14px)
 						lineHeight: 1.428571429,
 						color: COLORS.text,
 						fontFeatureSettings: '"liga" 1', // Enable OpenType ligatures in IE
-						fontFamily: TYPE.bodyFont.fontFamily,
+						...TYPE.bodyFont[400],
 					},
-					':focus, [type="button"]:-moz-focusring, [type="reset"]:-moz-focusring, [type="submit"]:-moz-focusring, button:-moz-focusring': {
+					'*:focus': {
+						...PACKS.focus,
+					},
+					'[type="button"]:-moz-focusring, [type="reset"]:-moz-focusring, [type="submit"]:-moz-focusring, button:-moz-focusring': {
 						// button:focus because of normalize reset (needs higher specificity)
 						...PACKS.focus,
 					},

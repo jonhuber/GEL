@@ -1,15 +1,22 @@
 /** @jsx jsx */
 
-import React from 'react';
+import { jsx, useBrand, merge } from '@westpac/core';
 import PropTypes from 'prop-types';
-import { jsx, useBrand } from '@westpac/core';
+import pkg from '../package.json';
+import { Fragment } from 'react';
+
+// ==============================
+// Overwrite component
+// ==============================
+
+const Wrapper = ({ children, look }) => <Fragment>{children}</Fragment>;
 
 // ==============================
 // Component
 // ==============================
 
 export const Badge = ({ look, value, ...props }) => {
-	const { COLORS, BRAND } = useBrand();
+	const { COLORS, BRAND, TYPE, [pkg.name]: overridesWithTokens } = useBrand();
 
 	let color = '#fff';
 	if (look === 'hero' && BRAND === 'STG') {
@@ -19,6 +26,67 @@ export const Badge = ({ look, value, ...props }) => {
 		color = COLORS.muted;
 	}
 
+	const overrides = {
+		primary: {
+			css: {
+				color,
+				backgroundColor: COLORS[look],
+				borderColor: COLORS[look],
+			},
+		},
+		hero: {
+			css: {
+				color,
+				backgroundColor: COLORS[look],
+				borderColor: COLORS[look],
+			},
+		},
+		neutral: {
+			css: {
+				color,
+				backgroundColor: COLORS[look],
+				borderColor: COLORS[look],
+			},
+		},
+		faint: {
+			css: {
+				color,
+				backgroundColor: '#fff',
+				borderColor: COLORS.border,
+			},
+		},
+		success: {
+			css: {
+				color,
+				backgroundColor: COLORS[look],
+				borderColor: COLORS[look],
+			},
+		},
+		info: {
+			css: {
+				color,
+				backgroundColor: COLORS[look],
+				borderColor: COLORS[look],
+			},
+		},
+		warning: {
+			css: {
+				color,
+				backgroundColor: COLORS[look],
+				borderColor: COLORS[look],
+			},
+		},
+		danger: {
+			css: {
+				color,
+				backgroundColor: COLORS[look],
+				borderColor: COLORS[look],
+			},
+		},
+		Wrapper,
+	};
+	merge(overrides, overridesWithTokens);
+
 	return (
 		<span
 			css={{
@@ -26,16 +94,14 @@ export const Badge = ({ look, value, ...props }) => {
 				borderRadius: '0.75rem',
 				display: 'inline-block',
 				fontSize: '0.875rem',
-				fontWeight: 700,
 				lineHeight: 1,
 				minWidth: '0.625rem',
 				padding: '0.25rem 0.4375rem',
 				textAlign: 'center',
 				verticalAlign: 'baseline',
 				whiteSpace: 'nowrap',
-				color: color,
-				backgroundColor: COLORS[look],
-				borderColor: look === 'faint' ? COLORS.border : COLORS[look],
+				...TYPE.bodyFont[700],
+				...overrides[look].css,
 
 				'@media print': {
 					color: '#000',
@@ -45,7 +111,7 @@ export const Badge = ({ look, value, ...props }) => {
 			}}
 			{...props}
 		>
-			{value}
+			<overrides.Wrapper look={look}>{value}</overrides.Wrapper>
 		</span>
 	);
 };

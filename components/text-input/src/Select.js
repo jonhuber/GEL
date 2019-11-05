@@ -10,19 +10,23 @@ import PropTypes from 'prop-types';
 // ==============================
 
 export const Select = ({ size, width, inline, invalid, children, data, ...props }) => {
-	const { COLORS, PACKS } = useBrand();
+	const { COLORS, PACKS, TYPE } = useBrand();
 	const mq = useMediaQuery();
 
 	const childrenData = [];
-	if(data) {
-		data.map( ({label, ...rest}, index) => {
-			childrenData.push(<option key={index} {...rest}>{label}</option>);
+	if (data) {
+		data.map(({ label, ...rest }, index) => {
+			childrenData.push(
+				<option key={index} {...rest}>
+					{label}
+				</option>
+			);
 		});
 	}
 
 	// Common styling
 	// We'll add important to focus state for text inputs so they are always visible even with the useFocus helper
-	const focus = PACKS.focus;
+	const focus = { ...PACKS.focus };
 	focus.outline += ' !important';
 	const borderWidth = 1; //px
 	const lineHeight = 1.5;
@@ -42,7 +46,7 @@ export const Select = ({ size, width, inline, invalid, children, data, ...props 
 				width: inline ? ['100%', 'auto'] : '100%',
 				appearance: 'none',
 				lineHeight: lineHeight,
-				fontWeight: 400,
+				...TYPE.bodyFont[400],
 				color: COLORS.text,
 				backgroundColor: '#fff',
 				border: `${borderWidth}px solid ${
@@ -56,7 +60,8 @@ export const Select = ({ size, width, inline, invalid, children, data, ...props 
 				height: `calc(${lineHeight}em + ${(p => `${p[0]} + ${p[2] || p[0]}`)(
 					sizeMap[size].padding
 				)} + ${2 * borderWidth}px)`,
-				maxWidth: width && `calc(${extras} + ${caretWidth} + ${caretGap} + ${round(width * 1.81)}ex)`,
+				maxWidth:
+					width && `calc(${extras} + ${caretWidth} + ${caretGap} + ${round(width * 1.81)}ex)`,
 				paddingRight: `calc(${sizeMap[size].padding[1]} + ${caretWidth} + ${caretGap})`,
 				backgroundImage: `url("${svgToTinyDataURI(caretSVG)}")`,
 				backgroundRepeat: 'no-repeat',
@@ -64,8 +69,8 @@ export const Select = ({ size, width, inline, invalid, children, data, ...props 
 
 				'&::placeholder': {
 					opacity: 1, // Override Firefox's unusual default opacity
-					fontWeight: 300,
 					color: COLORS.tints.text50,
+					...TYPE.bodyFont[300],
 				},
 
 				// Focus styling (for all, not just keyboard users)
@@ -102,7 +107,7 @@ export const Select = ({ size, width, inline, invalid, children, data, ...props 
 			})}
 			{...props}
 		>
-			{data ? childrenData : children }
+			{data ? childrenData : children}
 		</select>
 	);
 };

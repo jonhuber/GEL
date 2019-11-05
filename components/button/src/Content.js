@@ -1,10 +1,12 @@
 /** @jsx jsx */
 
-import { jsx } from '@westpac/core';
+import { jsx, useBrand, merge } from '@westpac/core';
 import { VisuallyHidden } from '@westpac/a11y';
-import { TextWrapper } from './TextWrapper';
 import PropTypes from 'prop-types';
 import { Fragment } from 'react';
+
+import { TextWrapper } from './TextWrapper';
+import pkg from '../package.json';
 
 // ==============================
 // Utils
@@ -30,6 +32,13 @@ export const Content = ({
 	srOnlyText,
 	children,
 }) => {
+	const { [pkg.name]: overridesWithTokens } = useBrand();
+
+	const overrides = {
+		TextWrapper,
+	};
+	merge(overrides, overridesWithTokens);
+
 	// Compose a button text + icon fragment, if these are provided
 	return (
 		<Fragment>
@@ -41,9 +50,9 @@ export const Content = ({
 				/>
 			)}
 			{children && (
-				<TextWrapper block={block} srOnlyText={srOnlyText}>
+				<overrides.TextWrapper block={block} srOnlyText={srOnlyText}>
 					{children}
-				</TextWrapper>
+				</overrides.TextWrapper>
 			)}
 			{IconAfter && (
 				<IconAfter
@@ -63,7 +72,7 @@ Content.propTypes = {
 	size: PropTypes.oneOfType([
 		PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
 		PropTypes.arrayOf(PropTypes.oneOf(['small', 'medium', 'large', 'xlarge'])),
-	]),
+	]).isRequired,
 
 	/**
 	 * Places an icon within the button, after the button’s text
@@ -85,7 +94,7 @@ Content.propTypes = {
 	 *
 	 * Fit button width to its parent width.
 	 */
-	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
+	block: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]).isRequired,
 
 	/**
 	 * Button text

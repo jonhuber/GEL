@@ -1,13 +1,12 @@
 /** @jsx jsx */
 
-import { jsx, useBrand, useMediaQuery } from '@westpac/core';
+import { jsx, useBrand, useMediaQuery, asArray, merge } from '@westpac/core';
 import PropTypes from 'prop-types';
+import pkg from '../package.json';
 
 // ==============================
 // Utils
 // ==============================
-
-const asArray = val => (Array.isArray(val) ? val : [val]);
 
 export const sizeMap = {
 	xsmall: 12, // 0.5x
@@ -16,6 +15,10 @@ export const sizeMap = {
 	large: 36, //  1.5x
 	xlarge: 48, // 2x
 };
+
+// ==============================
+// Token component
+// ==============================
 
 const IconWrapper = ({ size, ...props }) => {
 	const mq = useMediaQuery();
@@ -46,20 +49,33 @@ const IconWrapper = ({ size, ...props }) => {
 // ==============================
 
 export const Icon = ({ children, color, label, size, ...props }) => {
-	const { COLORS } = useBrand();
+	const { COLORS, [pkg.name]: overridesWithTokens } = useBrand();
+
+	const overrides = {
+		Wrapper: IconWrapper,
+		svgAttributes: {},
+	};
+	merge(overrides, overridesWithTokens);
 
 	return (
-		<IconWrapper size={size} css={{ color: color ? color : COLORS.muted }} {...props}>
+		<overrides.Wrapper
+			size={size}
+			color={color}
+			label={label}
+			css={{ color: color ? color : COLORS.muted }}
+			{...props}
+		>
 			<svg
 				aria-label={label}
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 24 24"
 				role="img"
 				focusable="false"
+				{...overrides.svgAttributes}
 			>
 				{children}
 			</svg>
-		</IconWrapper>
+		</overrides.Wrapper>
 	);
 };
 
@@ -92,7 +108,7 @@ export const propTypes = {
 	size: PropTypes.oneOfType([
 		PropTypes.oneOf(Object.keys(sizeMap)),
 		PropTypes.arrayOf(PropTypes.oneOf(Object.keys(sizeMap))),
-	]),
+	]).isRequired,
 };
 
 export const defaultProps = {

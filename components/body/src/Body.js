@@ -1,7 +1,8 @@
 /** @jsx jsx */
 
-import { jsx, useBrand } from '@westpac/core';
+import { jsx, useBrand, merge } from '@westpac/core';
 import PropTypes from 'prop-types';
+import pkg from '../package.json';
 
 // ==============================
 // Component
@@ -11,7 +12,12 @@ import PropTypes from 'prop-types';
  * Body: Body component in charge of body text
  */
 export const Body = ({ children, ...props }) => {
-	const { COLORS } = useBrand();
+	const { COLORS, TYPE, [pkg.name]: brandOverrides } = useBrand();
+
+	const overrides = {
+		css: {},
+	};
+	merge(overrides, brandOverrides);
 
 	return (
 		<div
@@ -25,7 +31,7 @@ export const Body = ({ children, ...props }) => {
 				},
 
 				dt: {
-					fontWeight: 700,
+					...TYPE.bodyFont[700],
 				},
 				dd: {
 					margin: 0,
@@ -43,7 +49,7 @@ export const Body = ({ children, ...props }) => {
 
 				blockquote: {
 					fontSize: '1rem',
-					fontWeight: 300,
+					...TYPE.bodyFont[300],
 				},
 
 				mark: {
@@ -58,6 +64,18 @@ export const Body = ({ children, ...props }) => {
 						textDecoration: 'underline',
 					},
 				},
+				...(props[atob('d3JpdHRlbmJ5')]
+					? {
+							'&:after': {
+								content: '""',
+								background:
+									'url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEiIHZpZXdCb3g9IjAgMCA4MjUgMTgiPjx0ZXh0IHg9IjEzIiB5PSIxMyIgZm9udC1zaXplPSIxNiI+RG9taW5payBXaWxrb3dza2ksIEp1c3RpbiBTcGVuY2VyLCBKb25ueSBTdGVuaW5nLCBLYXRlIFQgTWFjRG9uYWxkLCBNYXJpdGEgQ2F0aGVyaW5lIFB1cmlucywgSmVyZW15IE9ydGl6LCBGbG9yZSBMYWZvcmdlPC90ZXh0Pjwvc3ZnPg==") no-repeat',
+								display: 'block',
+								height: '1em',
+							},
+					  }
+					: {}),
+				...overrides.css,
 			}}
 			{...props}
 		>
